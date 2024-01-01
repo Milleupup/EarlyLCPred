@@ -96,10 +96,6 @@ def save_image_sequence(
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
     for fr, image in enumerate(images):
-        
         file_dir = os.path.join(folder_name, str(img_frames[fr]).zfill(6)+'.png')
         if not cv2.imwrite(file_dir, image.astype(np.int8)*255):
             raise Exception("Could not write image: " + file_dir)   
-
-    
-    

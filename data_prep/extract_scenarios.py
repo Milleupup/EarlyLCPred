@@ -33,8 +33,10 @@ class ExtractScenarios:
         if not os.path.exists(self.LC_states_dir):
             os.makedirs(self.LC_states_dir)
         self.scenarios = []
-        self.data_tracks, _ = rc.read_track_csv(track_path, track_pickle_path, group_by = 'tracks', reload = False, fr_div = self.fr_div)
-        self.data_frames, _ = rc.read_track_csv(track_path, frame_pickle_path, group_by = 'frames', reload = False, fr_div = self.fr_div)
+        # self.data_tracks, _ = rc.read_track_csv(track_path, track_pickle_path, group_by = 'tracks', reload = False, fr_div = self.fr_div)
+        # self.data_frames, _ = rc.read_track_csv(track_path, frame_pickle_path, group_by = 'frames', reload = False, fr_div = self.fr_div)
+        self.data_tracks, _ = rc.read_track_csv(track_path, track_pickle_path, group_by = 'tracks', reload = True, fr_div = self.fr_div)
+        self.data_frames, _ = rc.read_track_csv(track_path, frame_pickle_path, group_by = 'frames', reload = True, fr_div = self.fr_div)
         
         self.statics = rc.read_static_info(static_path)
         

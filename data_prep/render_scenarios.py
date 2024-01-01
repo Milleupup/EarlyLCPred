@@ -6,7 +6,8 @@ import h5py
 import matplotlib.pyplot as plt
 import read_csv as rc
 import param as p
-from utils import rendering_funcs as rf
+# from utils import rendering_funcs as rf
+from data_prep.utils import rendering_funcs as rf
 
 class RenderScenarios:
     """This class is for rendering extracted scenarios from HighD dataset recording files (needs to be called seperately for each scenario).
@@ -70,15 +71,18 @@ class RenderScenarios:
         hf = h5py.File(file_dir, 'w')
         valid_itrs = [False if scenario['images'] is None else True for scenario in self.scenarios]
         data_num = valid_itrs.count(True)
-        image_data = hf.create_dataset('image_data', shape = (data_num, self.seq_len, 3, self.cropped_height, self.cropped_width), dtype = np.bool)
-        frame_data = hf.create_dataset('frame_data', shape = (data_num, self.seq_len), dtype = np.float32)       
-        tv_data = hf.create_dataset('tv_data', shape = (data_num,), dtype = np.int)
+        # image_data = hf.create_dataset('image_data', shape = (data_num, self.seq_len, 3, self.cropped_height, self.cropped_width), dtype = np.bool)
+        image_data = hf.create_dataset('image_data', shape = (data_num, self.seq_len, 3, self.cropped_height, self.cropped_width), dtype = bool)
+        frame_data = hf.create_dataset('frame_data', shape = (data_num, self.seq_len), dtype = np.float32)
+        # tv_data = hf.create_dataset('tv_data', shape = (data_num,), dtype = np.int)
+        tv_data = hf.create_dataset('tv_data', shape = (data_num,), dtype = int)
         labels = hf.create_dataset('labels', shape = (data_num,), dtype = np.float32)
         state_wirth_data = hf.create_dataset('state_wirth_data', shape = (data_num, self.seq_len, 18), dtype = np.float32)
         state_shou_data = hf.create_dataset('state_shou_data', shape = (data_num, self.seq_len, 18), dtype = np.float32)
         state_ours_data = hf.create_dataset('state_ours_data', shape = (data_num, self.seq_len, 18), dtype = np.float32)
-        ttlc_available = hf.create_dataset('ttlc_available', shape = (data_num,), dtype = np.bool)
-        
+        # ttlc_available = hf.create_dataset('ttlc_available', shape = (data_num,), dtype = np.bool)
+        ttlc_available = hf.create_dataset('ttlc_available', shape = (data_num,), dtype = bool)
+
 
         data_itr = 0
         for itr, validity in enumerate(valid_itrs):

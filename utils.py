@@ -533,8 +533,9 @@ def calc_classification_metrics(p, all_preds, all_labels, all_ttlc_preds, predic
     # metrics with thr
     all_hits = np.zeros_like(all_preds)
     all_TPs = np.zeros_like(all_preds)
-    FP_index = np.zeros_like(all_preds, dtype= np.bool)
-    
+    # FP_index = np.zeros_like(all_preds, dtype= np.bool)
+    FP_index = np.zeros_like(all_preds, dtype= bool)
+
     FP_TTLC = np.zeros((all_preds.size))
     cur_FP_index = 0
     recall_vs_TTLC = np.zeros((prediction_seq))

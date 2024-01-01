@@ -1,27 +1,23 @@
-
-DATASET = "Processed_highD"
-UNBALANCED = False
-
-dir_ext = ''
+DATASET,UNBALANCED,dir_ext = "Processed_highD",False,''
 if UNBALANCED:
     dir_ext += 'U'
 
-
-
-
 # Problem definition parameters:
-SEQ_LEN = 35
-OBS_LEN = 10
-PRED_LEN = 25
-FPS = 5
-
+# SEQ_LEN = 35
+# OBS_LEN = 10
+# PRED_LEN = 25
+# FPS = 5
 # Rendering params
-save_whole_imgs = False
-save_cropped_imgs = False
-image_scaleH = 4
-image_scaleW = 1
+# save_whole_imgs = False
+# save_cropped_imgs = False
+'''
+FPS为1，则fr_div=25/1=25，筛选出了 DataFrame df 中 frame 列为 25 的整数倍的数据行，新数据更新间隔为1s
+FPS为5，则fr_div=25/5=5，筛选出了 DataFrame df 中 frame 列为 5 的整数倍的数据行，新数据更新间隔为0.2s
+FPS为25，则fr_div=25/25=1，筛选出了 DataFrame df 中 frame 列为 1 的整数倍的数据行，新数据更新间隔为0.04s
 
-
+'''
+SEQ_LEN,OBS_LEN,PRED_LEN,FPS = 80,30,50,25
+save_whole_imgs,save_cropped_imgs,image_scaleH,image_scaleW = True,True,4,1
 
 # parameters of CS-LSTM model
 grid_max_x = 100
@@ -41,7 +37,7 @@ if DATASET == "Processed_highD":
     cropped_height = int(20 * image_scaleH)
     cropped_width = int(200 * image_scaleW)
 else:
-    raise('undefined dataaset')
+    raise('undefined dataset')
 
 
 

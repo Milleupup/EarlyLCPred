@@ -100,8 +100,12 @@ class LCDataset(Dataset):
                 images = torch.from_numpy(image_data[sample_itr].astype(np.float32))
                 states = torch.from_numpy(states.astype(np.float32))
                 data_output = [images, states]
-                
-            label = labels_data[sample_itr].astype(np.long)
-            ttlc_status = ttlc_available[sample_itr].astype(np.long)          
+
+            # 过时的数据类型 np.long,numpy.long在numpy 1.20中被弃用，并在numpy 1.24中被删除
+            # 可以使用 np.int64，它是对应的长整型数据类型
+            # label = labels_data[sample_itr].astype(np.long)
+            # ttlc_status = ttlc_available[sample_itr].astype(np.long)
+            label = labels_data[sample_itr].astype(np.int64)
+            ttlc_status = ttlc_available[sample_itr].astype(np.int64)
         return data_output, label, plot_output, ttlc_status
 

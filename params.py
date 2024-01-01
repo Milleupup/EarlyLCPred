@@ -143,19 +143,8 @@ class Parameters:
             else:
                 self.unblanaced_ext = ''
             self.DATASET_DIR = '../../Dataset/Processed_highD/RenderedDataset{}/'.format(self.unblanaced_ext)
-        
-        
-         
-
 
 # Different Tasks
 CLASSIFICATION = 0
 REGRESSION = 1
 DUAL = 2    
-            
-        
-            
-
-        
-
-        

@@ -84,10 +84,15 @@ def read_track_csv(input_path, pickle_path, reload = True, group_by = 'frames', 
             pickle_in = open(pickle_path, "rb")
             #print('Record read from pickle file:', pickle_path)
             [frames, highway_length] = pickle.load(pickle_in)
+            # 不需要reload则实际上在此时已经直接返回
             return frames, highway_length 
     # Read the csv file, convert it into a useful data structure
+    '''
+    筛选出了 DataFrame df 中 frame 列为 fr_div 的整数倍的数据行。
+    '''
     df = pandas.read_csv(input_path)
-    selected_frames = (df.frame%fr_div == 0).real.tolist()
+    # selected_frames = (df.frame%fr_div == 0).real.tolist()
+    selected_frames = (df.frame%fr_div == 0).tolist()
     df = df.loc[selected_frames]#.to_frame()
     #frame_group = df.groupby([FRAME], sort = False)
 
